@@ -1,0 +1,2488 @@
+{
+	"info": {
+		"_postman_id": "f90548d3-69f1-41f4-9afb-3ac6d78b949c",
+		"name": "SMS-Nexmo",
+		"description": "Nexmo's SMS API allows you to send and receive text messages to users around the globe through simple RESTful APIs.\n\n- Programmatically send and receive high volume of SMS anywhere in the world.\n- Build apps that scale with the web technologies that you are already using.\n- Send SMS with low latency and high delivery rates.\n- Receive SMS for free using SMS-enabled local numbers in countries around the world.\n- Only pay for what you use, nothing more.\n    \n\n---\n\n## [KPN Developer](https://developer.kpn.com/)  \n[Getting Started](https://developer.kpn.com/getting-started)\n\n---\n\nContact Support:  \nName: API Support  \nEmail: [api_developer@kpn.com](mailto:api_developer@kpn.com)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "4406147-f90548d3-69f1-41f4-9afb-3ac6d78b949c"
+	},
+	"item": [
+		{
+			"name": "send",
+			"item": [
+				{
+					"name": "Send SMS",
+					"id": "8597cb3a-a1f7-44bd-a405-af5860651867",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+									"key": "from",
+									"value": "{{from}}"
+								},
+								{
+									"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+									"key": "to",
+									"value": "{{to}}"
+								},
+								{
+									"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+									"key": "text",
+									"value": "{{text}}"
+								},
+								{
+									"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+									"key": "ttl",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+									"key": "status-report-req",
+									"value": "false"
+								},
+								{
+									"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+									"key": "callback",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: The Data Coding Scheme value of the message",
+									"key": "message-class",
+									"value": "1"
+								},
+								{
+									"description": "**Advanced**: The format of the message body'' example: text",
+									"key": "type",
+									"value": "vcard"
+								},
+								{
+									"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+									"key": "vcard",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+									"key": "vcal",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+									"key": "body",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+									"key": "udh",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+									"key": "protocol-id",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+									"key": "title",
+									"value": "title"
+								},
+								{
+									"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+									"key": "url",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+									"key": "validity",
+									"value": ""
+								},
+								{
+									"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+									"key": "client-ref",
+									"value": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/send",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"send"
+							]
+						},
+						"description": "Send an outbound SMS"
+					},
+					"response": [
+						{
+							"id": "7fe28704-f802-4190-b698-3351649eb32c",
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message-count\": \"<integer>\",\n  \"messages\": [\n    {\n      \"to\": \"<string>\",\n      \"message-id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"remaining-balance\": \"<string>\",\n      \"message-price\": \"<string>\",\n      \"network\": \"<string>\"\n    },\n    {\n      \"to\": \"<string>\",\n      \"message-id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"remaining-balance\": \"<string>\",\n      \"message-price\": \"<string>\",\n      \"network\": \"<string>\"\n    }\n  ]\n}"
+						},
+						{
+							"id": "759b11fc-94a2-4257-a749-02a245f80518",
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "cd19f421-c77a-428d-ab4b-f65869b5cf5e",
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "d0cda3e8-25e8-44fb-9e3d-4176ec98d8f8",
+							"name": "Forbidden",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "d4abb078-26c6-40bd-9a12-9f0e738709b3",
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "d97ae3d2-f566-41c5-b825-71db50852935",
+							"name": "Too Many Requests",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Too Many Requests",
+							"code": 429,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "40952911-295f-43f7-a494-71bf9863b99f",
+							"name": "Server Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "0fe89805-5c16-4d65-8e84-218bd4495bfc",
+							"name": "Service Unavailable",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The name or number the message should be sent from. Alphanumeric senderID's are not supported in all countries, see Global Messaging for more details. If alphanumeric, spaces will be ignored. Numbers are specified in E.164 format. You can use any alphanumeric string up to 11 characters (or up to 15 numeric characters).  It is recommended to send at least \"3\" characters (in case of alphanumeric), as it might show differently on different mobile devices. Moreover, alphanumeric cannot contain spaces as well.\n  example: `AcmeInc`.Note: If the value in your from parameter does not obey these rules it might be modified in transit or not delivered at all.",
+											"key": "from",
+											"value": "{{from}}"
+										},
+										{
+											"description": "(Required) The number that the message should be sent to. Numbers are specified in E.164 format.\n  minLength: 7\n  maxLength: 15\n  pattern: '\\d{7,15}'\n  example: 447700900000              ",
+											"key": "to",
+											"value": "{{to}}"
+										},
+										{
+											"description": "The body of the message being sent. If your message contains characters that can be encoded according to the GSM Standard and Extended tables then you can set the `type` to `text`. If your message contains characters outside this range, then you will need to set the `type` to `unicode`.\n  example: Hello World! ",
+											"key": "text",
+											"value": "{{text}}"
+										},
+										{
+											"description": "**Advanced**: The duration in milliseconds the delivery of an SMS will be attempted.§§ By default Nexmo attempt delivery for 72 hours, however the maximum effective value depends on the operator and is typically 24 - 48 hours. We recommend this value should be kept at its default or at least 30 minutes.\n  minimum: 20000\n  maximum: 604800000\n  example: 900000",
+											"key": "ttl",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Boolean indicating if you like to receive a [Delivery Receipt](/messaging/sms/building-blocks/receive-a-delivery-receipt).'",
+											"key": "status-report-req",
+											"value": "false"
+										},
+										{
+											"description": "**Advanced**: The webhook endpoint the delivery receipt for this sms is sent to. This parameter overrides the webhook endpoint you set in Dashboard.\n  ",
+											"key": "callback",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The Data Coding Scheme value of the message",
+											"key": "message-class",
+											"value": "1"
+										},
+										{
+											"description": "**Advanced**: The format of the message body'' example: text",
+											"key": "type",
+											"value": "vcard"
+										},
+										{
+											"description": "**Advanced**: A business card in [vCard format](https://en.wikipedia.org/wiki/VCard). Depends on `type` parameter having the value `vcard`.",
+											"key": "vcard",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: A calendar event in [vCal format](https://en.wikipedia.org/wiki/VCal). Depends on `type` parameter having the value `vcal`.",
+											"key": "vcal",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Hex encoded binary data. Depends on `type` parameter having the value `binary`.",
+											"key": "body",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: Your custom Hex encoded [User Data Header](https://en.wikipedia.org/wiki/User_Data_Header). Depends on `type` parameter having the value `binary`.",
+											"key": "udh",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The value of the [protocol identifier](https://en.wikipedia.org/wiki/GSM_03.40#Protocol_Identifier) to use. Ensure that the value is aligned with `udh`.",
+											"key": "protocol-id",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The title for a wappush SMS. Depends on `type` parameter having the value `wappush`.   ",
+											"key": "title",
+											"value": "title"
+										},
+										{
+											"description": "**Advanced**: The URL of your website. Depends on `type` parameter having the value `wappush`.",
+											"key": "url",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: The availability for an SMS in milliseconds. Depends on `type` parameter having the value `wappush`.",
+											"key": "validity",
+											"value": ""
+										},
+										{
+											"description": "**Advanced**: You can optionally include your own reference of up to 40 characters.",
+											"key": "client-ref",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"send"
+									]
+								},
+								"description": "Send an outbound SMS"
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "050cde6e-9e40-4a8c-94cc-93147d0b260a"
+		},
+		{
+			"name": "register",
+			"item": [
+				{
+					"name": "Register callback URL to webhook for incoming messages",
+					"id": "52baea63-1e0d-4582-8548-2224329dfb9b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+									"key": "to",
+									"value": ""
+								},
+								{
+									"description": "(Required) The callback URL for inbound SMS.           ",
+									"key": "callback_url",
+									"value": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+					},
+					"response": [
+						{
+							"id": "a324d5ed-36a0-4b28-9975-91227e516fa0",
+							"name": "OK",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "8cc3c19f-0bcb-4c29-a210-8e12dac04dbb",
+							"name": "Bad Request",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "5dd062c1-823c-4cc9-bdea-a3b03eb6e50b",
+							"name": "Unauthorized",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "834f4fb6-c71d-4303-894b-13b51d75bcc8",
+							"name": "Forbidden",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "3ea73dd9-a703-43a0-9495-f49fce277038",
+							"name": "Not Found",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "ccef6716-8c11-4f11-a537-1dd5e22e2b1e",
+							"name": "Too Many Requests",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Too Many Requests",
+							"code": 429,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "952f5ead-9910-46b8-9141-3d6083462956",
+							"name": "Server Error",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						},
+						{
+							"id": "ef11af6c-e8e5-48d1-a962-ba1e4570b0df",
+							"name": "Service Unavailable",
+							"originalRequest": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "accessToken",
+											"type": "any"
+										},
+										{
+											"key": "addTokenTo",
+											"type": "any"
+										},
+										{
+											"key": "callBackUrl",
+											"type": "any"
+										},
+										{
+											"key": "authUrl",
+											"type": "any"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"type": "any"
+										},
+										{
+											"key": "clientSecret",
+											"type": "any"
+										},
+										{
+											"key": "clientAuth",
+											"type": "any"
+										},
+										{
+											"key": "grantType",
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"type": "any"
+										},
+										{
+											"key": "username",
+											"type": "any"
+										},
+										{
+											"key": "password",
+											"type": "any"
+										},
+										{
+											"key": "tokenType",
+											"type": "any"
+										},
+										{
+											"key": "redirectUri",
+											"type": "any"
+										},
+										{
+											"key": "refreshToken",
+											"type": "any"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"description": "(Required) The phone number you use for testing, without buying a virtual number. This is not applicable if you are a premium user. Remember, this is only applicable if you are a demo user.",
+											"key": "to",
+											"value": ""
+										},
+										{
+											"description": "(Required) The callback URL for inbound SMS.           ",
+											"key": "callback_url",
+											"value": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								},
+								"description": "Handling inbound SMS with with API is easy. You just need to create a webhook endpoint and configure your number or account to point to the endpoint. \n- If you are a test user  try inbound messaging using below using 'Register Webhook endpoint'. \n- If you are production user,  use the `Phone Numbers API` to search, buy and manage your virtual number.\n"
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*",
+									"enabled": true
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"transactionId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"info\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "f73118db-a32d-462b-91cb-fca3abda2545"
+		},
+		{
+			"name": "https:",
+			"item": [
+				{
+					"name": "example.com:webhooks",
+					"item": [
+						{
+							"name": "inbound-sms",
+							"item": [
+								{
+									"name": "Inbound SMS",
+									"id": "e32e013b-ce79-4350-977a-f295e2ad9726",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"msisdn\": \"<string>\",\n  \"to\": \"<string>\",\n  \"messageId\": \"<string>\",\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"message-timestamp\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"concat\": \"<string>\",\n  \"concat-ref\": \"<string>\",\n  \"concat-total\": \"<string>\",\n  \"concat-part\": \"<string>\",\n  \"data\": \"<string>\",\n  \"udh\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/https://example.com:webhooks/inbound-sms",
+											"protocol": "{{baseUrl}}/https",
+											"host": [
+												"example",
+												"com"
+											],
+											"port": "webhooks",
+											"path": [
+												"inbound-sms"
+											]
+										},
+										"description": "This is not an API call but it is to showcase how the schema of inbound SMS will look like. You can get inbound SMS by registering your webhook URL using `Register webhook` and then passing 'inbound' header value as 'yes' in 'Send SMS'."
+									},
+									"response": [
+										{
+											"id": "9f2d4700-6a8b-48d3-a63e-6a326aec897d",
+											"name": "Your server returns this code if it accepts the callback",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"msisdn\": \"<string>\",\n  \"to\": \"<string>\",\n  \"messageId\": \"<string>\",\n  \"text\": \"<string>\",\n  \"type\": \"<string>\",\n  \"keyword\": \"<string>\",\n  \"message-timestamp\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"nonce\": \"<string>\",\n  \"concat\": \"<string>\",\n  \"concat-ref\": \"<string>\",\n  \"concat-total\": \"<string>\",\n  \"concat-part\": \"<string>\",\n  \"data\": \"<string>\",\n  \"udh\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/https://example.com:webhooks/inbound-sms",
+													"protocol": "{{baseUrl}}/https",
+													"host": [
+														"example",
+														"com"
+													],
+													"port": "webhooks",
+													"path": [
+														"inbound-sms"
+													]
+												},
+												"description": "This is not an API call but it is to showcase how the schema of inbound SMS will look like. You can get inbound SMS by registering your webhook URL using `Register webhook` and then passing 'inbound' header value as 'yes' in 'Send SMS'."
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							],
+							"id": "a27a7f74-75dd-421e-a90d-a9a3af25099a"
+						},
+						{
+							"name": "delivery-receipt",
+							"item": [
+								{
+									"name": "Delivery Receipt",
+									"id": "f1cbd16b-3aea-43e9-a4db-c84124fb9cc2",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"msisdn\": \"<string>\",\n  \"to\": \"<string>\",\n  \"network-code\": \"<string>\",\n  \"messageId\": \"<string>\",\n  \"price\": \"<string>\",\n  \"status\": \"<string>\",\n  \"scts\": \"<string>\",\n  \"err-code\": \"<string>\",\n  \"message-timestamp\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/https://example.com:webhooks/delivery-receipt",
+											"protocol": "{{baseUrl}}/https",
+											"host": [
+												"example",
+												"com"
+											],
+											"port": "webhooks",
+											"path": [
+												"delivery-receipt"
+											]
+										},
+										"description": "This is not an API call but it is to showcase how the schema of delivery receipt will look like. You can get delivery receipt by using `status-report-req` and `callback` parameters of 'Send SMS' request body."
+									},
+									"response": [
+										{
+											"id": "c7c4cd45-a966-41dc-bbd8-8633be3bfb29",
+											"name": "Your server returns this code if it accepts the callback",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"msisdn\": \"<string>\",\n  \"to\": \"<string>\",\n  \"network-code\": \"<string>\",\n  \"messageId\": \"<string>\",\n  \"price\": \"<string>\",\n  \"status\": \"<string>\",\n  \"scts\": \"<string>\",\n  \"err-code\": \"<string>\",\n  \"message-timestamp\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/https://example.com:webhooks/delivery-receipt",
+													"protocol": "{{baseUrl}}/https",
+													"host": [
+														"example",
+														"com"
+													],
+													"port": "webhooks",
+													"path": [
+														"delivery-receipt"
+													]
+												},
+												"description": "This is not an API call but it is to showcase how the schema of delivery receipt will look like. You can get delivery receipt by using `status-report-req` and `callback` parameters of 'Send SMS' request body."
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							],
+							"id": "83c98753-c120-401e-bfba-e4684ae41270"
+						}
+					],
+					"id": "71650ca6-4899-440e-9a42-0a9b0c4da63b"
+				}
+			],
+			"id": "ec58f7df-a3d8-42a2-9533-133e5ef63dec"
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenName",
+				"value": "access_token",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://api-prd.kpn.com/oauth/client_credential/accesstoken?grant_type=client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7071a2f1-2746-48c3-b964-14c1cb3f3f59",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "f290001e-0759-4cd6-afa6-4bc2b05af828",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8b8c8e57-f5f8-464a-a80e-f0ae783906d7",
+			"key": "baseUrl",
+			"value": "https://api-prd.kpn.com/communication/nexmo/sms"
+		},
+		{
+			"id": "84a8e899-55eb-47e0-87a9-a061b2ccbbaf",
+			"key": "client_id",
+			"value": ""
+		},
+		{
+			"id": "fa6b46c9-8b6d-4958-ae2b-8bf8d80fbb7c",
+			"key": "client_secret",
+			"value": ""
+		},
+		{
+			"id": "97314090-440c-4342-951a-100b06b11937",
+			"key": "to",
+			"value": ""
+		},
+		{
+			"id": "afc5fe6d-40dc-4c64-aa1d-881fbcdd6336",
+			"key": "from",
+			"value": ""
+		},
+		{
+			"id": "c4d765f9-8a70-48b6-98fd-3326dc180d89",
+			"key": "text",
+			"value": "Hi from KPN"
+		}
+	]
+}
