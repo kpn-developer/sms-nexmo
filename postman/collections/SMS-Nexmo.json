@@ -2390,6 +2390,11 @@
 		"type": "oauth2",
 		"oauth2": [
 			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
 				"key": "tokenName",
 				"value": "access_token",
 				"type": "string"
@@ -2423,11 +2428,6 @@
 				"key": "addTokenTo",
 				"value": "header",
 				"type": "string"
-			},
-			{
-				"key": "client_authentication",
-				"value": "header",
-				"type": "string"
 			}
 		]
 	},
@@ -2435,7 +2435,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "7071a2f1-2746-48c3-b964-14c1cb3f3f59",
+				"id": "42ff7497-b968-467a-9d8b-f25e6c8a8fb5",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2445,7 +2445,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f290001e-0759-4cd6-afa6-4bc2b05af828",
+				"id": "f9d3d471-4f9d-41ac-9b55-fc4d6dadd7fd",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -2455,32 +2455,32 @@
 	],
 	"variable": [
 		{
-			"id": "8b8c8e57-f5f8-464a-a80e-f0ae783906d7",
+			"id": "b9d53e97-0eec-408a-8bf0-a26ea07dabdf",
 			"key": "baseUrl",
 			"value": "https://api-prd.kpn.com/communication/nexmo/sms"
 		},
 		{
-			"id": "84a8e899-55eb-47e0-87a9-a061b2ccbbaf",
+			"id": "5a9ee36b-067a-4627-a73d-406f1fc0b73b",
 			"key": "client_id",
 			"value": ""
 		},
 		{
-			"id": "fa6b46c9-8b6d-4958-ae2b-8bf8d80fbb7c",
+			"id": "e45a594e-4dbf-428d-82eb-6612f26dd889",
 			"key": "client_secret",
 			"value": ""
 		},
 		{
-			"id": "97314090-440c-4342-951a-100b06b11937",
+			"id": "e93067af-f56c-4d9d-a49b-a75e6e29ad3d",
 			"key": "to",
 			"value": ""
 		},
 		{
-			"id": "afc5fe6d-40dc-4c64-aa1d-881fbcdd6336",
+			"id": "2a34f732-0b67-4c03-86c3-64577612f56d",
 			"key": "from",
 			"value": ""
 		},
 		{
-			"id": "c4d765f9-8a70-48b6-98fd-3326dc180d89",
+			"id": "e2a51fae-86ec-4175-8781-e094a33ec5fb",
 			"key": "text",
 			"value": "Hi from KPN"
 		}
