@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "f90548d3-69f1-41f4-9afb-3ac6d78b949c",
 		"name": "SMS-Nexmo",
-		"description": "Nexmo's SMS API allows you to send and receive text messages to users around the globe through simple RESTful APIs.\n\n- Programmatically send and receive high volume of SMS anywhere in the world.\n- Build apps that scale with the web technologies that you are already using.\n- Send SMS with low latency and high delivery rates.\n- Receive SMS for free using SMS-enabled local numbers in countries around the world.\n- Only pay for what you use, nothing more.\n    \n\n---\n\n## [KPN Developer](https://developer.kpn.com/)  \n[Getting Started](https://developer.kpn.com/getting-started)\n\n---\n\nContact Support:  \nName: API Support  \nEmail: [api_developer@kpn.com](mailto:api_developer@kpn.com)",
+		"description": "Nexmo's SMS API allows you to send and receive text messages to users around the globe through simple RESTful APIs.\n\n- Programmatically send and receive high volume of SMS anywhere in the world.\n- Build apps that scale with the web technologies that you are already using.\n- Send SMS with low latency and high delivery rates.\n- Receive SMS for free using SMS-enabled local numbers in countries around the world.\n- Only pay for what you use, nothing more.\n    \n\n---\n\n## [KPN Developer](https://developer.kpn.com/)\n\n[Getting Started](https://developer.kpn.com/getting-started)\n\n---\n\nContact Support:  \nName: API Support  \nEmail: [api_developer@kpn.com](mailto:api_developer@kpn.com)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_uid": "4406147-f90548d3-69f1-41f4-9afb-3ac6d78b949c"
 	},
